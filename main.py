@@ -2,10 +2,10 @@
 from flask import Flask,render_template,request,redirect,url_for,flash
 # install Flask-SQLAlchemy (Armin Ronachoer)
 from flask_sqlalchemy import SQLAlchemy
-from configs.config import Development
+from configs.config import Production
 
 app = Flask(__name__)
-app.config.from_object(Development)
+app.config.from_object(Production)
 db = SQLAlchemy(app)
 
 from models.inventory import InventoryModel
