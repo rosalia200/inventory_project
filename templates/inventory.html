@@ -10,11 +10,11 @@
 
 {% include 'includes/_navbar.html' %}
 <!-- Button trigger modal for employee -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inventory">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addInventory">
     Add inventory
 </button>
 {#    modal for employee#}
-<div class="modal fade" id="inventory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="addInventory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -26,9 +26,9 @@
             </div>
             <div class="modal-body">
 
-                <form action="/inventory" method="post">
+                <form action="/addInventory" method="post">
                     <div class="form-group">
-                        <label for="formGroupExampleInput">First Name</label>
+                        <label for="formGroupExampleInput">Name</label>
                         <input name="name" required type="text" class="form-control" id="formGroupExampleInput"
                                placeholder="Name">
                     </div>
@@ -88,21 +88,27 @@
         <th scope="col">Stock</th>
         <th scope="col">Selling Price</th>
         <th scope="col">Serial Number</th>
+        <th scope="col">Sell</th>
+        <th scope="col">View Sales</th>
     </tr>
     </thead>
-{#      <tbody>#}
-{#        <tr>#}
-{#            {% for each in inve %}#}
-{#          <th scope="row">{{ each.id }}</th>#}
-{#          <td>{{ each.name }}</td>#}
-{#          <td>{{ each.type }}</td>#}
-{#          <td>{{ each.buying_price }}</td>#}
-{#          <td>{{ each.stock }}</td>#}
-{#          <td>{{ each.selling_price }}</td>#}
-{#          <td>{{ each.serial_number }}</td>#}
-{#        </tr>#}
-{##}
-{#      </tbody>#}
+    <tbody>
+    {% for each in inventory %}
+    <tr>
+
+        <th scope="row">{{ each.id }}</th>
+        <td>{{ each.name }}</td>
+        <td>{{ each.type }}</td>
+        <td>{{ each.buying_price }}</td>
+        <td>{{ each.stock }}</td>
+        <td>{{ each.selling_price }}</td>
+        <td>{{ each.serial_number }}</td>
+        <td>{# button for sell#}
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#addSales">Sell</button></td>
+        <td><a href="/inventory/{{ each.id }}/sales">View Sales</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
 </table>
 
 
