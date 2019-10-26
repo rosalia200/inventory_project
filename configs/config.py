@@ -14,4 +14,3 @@ class Production(Config):
     DEBUG = False
     environment ='production'
 
-    
